@@ -253,3 +253,6 @@ paket-files/
 # FAKE - F# Make
 .fake/
 *.jfm
+
+# Custom nsb gitignore's
+/IS_DacFX_Roslyn/Examples/T4Helper.cs

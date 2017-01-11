@@ -1,0 +1,15 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="System.IO" #>
+<#@ output extension=".cs" #>
+<#
+ var di = Host.ResolvePath("");
+#>
+namespace Examples
+{
+    public class T4Helper
+    {
+		public static string TemplateDir = @"<#= di #>";
+    }
+}
+
