@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.sync4partner
+namespace Model.sync
 {
     public class MainConfig
     {

@@ -7,6 +7,13 @@ using NLog;
 
 namespace Common
 {
+    public static class LoggerFactory
+    {
+        static public IMyLogger GetLogger(string loggerName)
+        {
+            return LogManager.GetLogger(loggerName, typeof(MyLogger)) as IMyLogger;
+        }
+    }
     public class MyLogger : Logger, IMyLogger
     {
         static private Logger _logger = null;
@@ -16,7 +23,7 @@ namespace Common
             {
                 if (_logger == null)
                 {
-                    _logger = LogManager.GetLogger("CommonLog", typeof(MyLogger));
+                    _logger = LogManager.GetLogger("Common", typeof(MyLogger));
                 }
                 return _logger as IMyLogger;
             }

@@ -9,6 +9,7 @@ namespace Common
 {
     public interface IMyLogger
     {
+        #region NLog.Logger
         void Trace(Exception exception, [Localizable(false)] string message);
         void Trace(Exception exception, [Localizable(false)] string message, params object[] args);
         void Trace(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
@@ -45,5 +46,6 @@ namespace Common
         void Fatal(IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
         void Fatal([Localizable(false)] string message);
         void Fatal([Localizable(false)] string message, params object[] args);
+        #endregion
     }
 }
