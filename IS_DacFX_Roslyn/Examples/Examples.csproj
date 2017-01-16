@@ -40,6 +40,8 @@
       <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SqlServer.ManagedDTS\v4.0_13.0.0.0__89845dcd8080cc91\Microsoft.SqlServer.ManagedDTS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -49,7 +51,9 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -63,11 +67,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4Helper.tt</DependentUpon>
     </Compile>
+    <Compile Include="LocalDBTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">
       <Project>{867ec43d-1deb-442e-85eb-0afd4821abb2}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQLHelper\SQLHelper.csproj">
+      <Project>{8842d474-fc9c-4869-8e27-21991a046c66}</Project>
+      <Name>SQLHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

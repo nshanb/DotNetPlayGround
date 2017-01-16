@@ -16,5 +16,12 @@ namespace Examples
                 return Path.Combine(Directory.GetParent(T4Helper.TemplateDir).ToString(), "SSIS");
             }
         }
+        public static string TestDBprojectPath
+        {
+            get
+            {
+                return Path.Combine(Directory.GetParent(T4Helper.TemplateDir).ToString(), "TestDB");
+            }
+        }
     }
 }

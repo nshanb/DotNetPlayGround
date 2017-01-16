@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Common;
+using System.Data.SqlClient;
 
 namespace Examples
 {
@@ -18,6 +19,20 @@ namespace Examples
         {
             var p = SSISHelper.LoadPackageFromProject("ExistingPackage", DevStudioHelper.SSISprojectPath + @"\bin\Development\SSIS.ispac");
             Assert.IsNotNull(p);
+        }
+        [TestMethod]
+        public void TryAppSettingsBaseDir()
+        {
+            Assert.AreEqual(System.Configuration.ConfigurationManager.AppSettings["BaseDir"], @"D:\Base");
+            Assert.IsNull(System.Configuration.ConfigurationManager.ConnectionStrings["localDBdoes not exist"]);
+        }
+        [TestMethod]
+        public void TryParseConnString()
+        {
+            string connString = System.Configuration.ConfigurationManager.ConnectionStrings["localDB"].ConnectionString;
+            SqlConnectionStringBuilder connBuilder = new SqlConnectionStringBuilder(connString);
+            Assert.AreEqual(connBuilder.DataSource, @"(LocalDB)\MSSQLLocalDB");
+            Assert.AreEqual(connBuilder.AttachDBFilename, @"D:\Base\DB\MylocalDB.mdf");
         }
         [TestMethod]
         public void TryGetVS_ProjectPath()
