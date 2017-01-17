@@ -25,14 +25,22 @@ namespace SQLHelper
             ServerConnection sConn = new ServerConnection(sqlConnectionInfo);
 
             Server server = new Server(sConn);
-
-            int nDB = server.Databases.Count;
+            try
+            {
+                Version version = server.Version;
+                localDBlogger.Info("Server:{0}; Version:{1}", sqlConnectionInfo.ServerName,version);
+            }
+            catch(Microsoft.SqlServer.Management.Common.ConnectionFailureException ex)
+            {
+                localDBlogger.Error(ex, "Server:{0}", sqlConnectionInfo.ServerName);
+                return false;
+            }
             localDBlogger.Info("server.Databases.Count:{0}", server.Databases.Count);
             foreach(Database db in server.Databases)
             {
                 localDBlogger.Info("db.Name:{0}; db.PrimaryFilePath:{1}; db.FileName:{2}", db.Name, db.PrimaryFilePath,db.FileGroups[0].Files[0].Name);
             }
-            return false;
+            return true;
         }
         public static bool EnsureDeleted(string connectionString)
         {
@@ -71,7 +79,7 @@ namespace SQLHelper
         {
             SqlConnectionStringBuilder connBuilder = new SqlConnectionStringBuilder(connectionString);
             string ds = connBuilder.DataSource;
-            if (!ds.Contains("LocalDB"))
+            if (!ds.ToLower().Contains("localdb") && !ds.ToLower().Contains("sqlexpress"))
             {
                 throw new ArgumentException("Not a local db connection", "connectionString");
             }
