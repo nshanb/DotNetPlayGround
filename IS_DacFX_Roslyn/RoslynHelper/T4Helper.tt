@@ -5,7 +5,7 @@
 <#
  var di = Host.ResolvePath("");
 #>
-namespace Examples
+namespace RoslynHelper
 {
     public class T4Helper
     {

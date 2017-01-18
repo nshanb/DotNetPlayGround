@@ -255,4 +255,5 @@ paket-files/
 *.jfm
 
 # Custom nsb gitignore's
-/IS_DacFX_Roslyn/Examples/T4Helper.cs
+#/IS_DacFX_Roslyn/Examples/T4Helper.cs
+/IS_DacFX_Roslyn/RoslynHelper/T4Helper.cs

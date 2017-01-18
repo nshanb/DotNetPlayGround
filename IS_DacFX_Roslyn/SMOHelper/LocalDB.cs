@@ -14,11 +14,22 @@ using Microsoft.SqlServer.Management.Common;
 // C:\Program Files (x86)\Microsoft SQL Server\130\SDK\Assemblies
 // Microsoft.SqlServer.ConnectionInfo.dll
 
-namespace SQLHelper
+namespace SMOHelper
 {
     public class LocalDB
     {
         static Common.IMyLogger localDBlogger = Common.LoggerFactory.GetLogger("localDB");
+
+        public static bool ListServers()
+        {
+            string[] instances = getLocalDBInstances();
+            foreach (string instance in instances)
+            {
+                EnsureServer(string.Format(@"Data Source = (LocalDB)\{0}; Integrated Security = True;", instance));
+            }
+            return false;
+        }
+
         public static bool EnsureServer(string connectionString)
         {
             SqlConnectionInfo sqlConnectionInfo = getLocalDBInstanceConn(connectionString);
@@ -28,17 +39,17 @@ namespace SQLHelper
             try
             {
                 Version version = server.Version;
-                localDBlogger.Info("Server:{0}; Version:{1}", sqlConnectionInfo.ServerName,version);
+                localDBlogger.Info("Server:{0}; Version:{1}", sqlConnectionInfo.ServerName, version);
             }
-            catch(Microsoft.SqlServer.Management.Common.ConnectionFailureException ex)
+            catch (Microsoft.SqlServer.Management.Common.ConnectionFailureException ex)
             {
                 localDBlogger.Error(ex, "Server:{0}", sqlConnectionInfo.ServerName);
                 return false;
             }
             localDBlogger.Info("server.Databases.Count:{0}", server.Databases.Count);
-            foreach(Database db in server.Databases)
+            foreach (Database db in server.Databases)
             {
-                localDBlogger.Info("db.Name:{0}; db.PrimaryFilePath:{1}; db.FileName:{2}", db.Name, db.PrimaryFilePath,db.FileGroups[0].Files[0].Name);
+                localDBlogger.Info("db.Name:{0}; db.PrimaryFilePath:{1}; db.FileName:{2}", db.Name, db.PrimaryFilePath, db.FileGroups[0].Files[0].Name);
             }
             return true;
         }
@@ -73,6 +84,29 @@ namespace SQLHelper
         {
             getLocalDBInstanceConn(connectionString);
             return false;
+        }
+
+        static private string[] getLocalDBInstances()
+        {
+            // nsb TODO error handling
+            System.Diagnostics.ProcessStartInfo processInfo = new System.Diagnostics.ProcessStartInfo();
+            processInfo.FileName = "SqlLocalDB";
+            processInfo.Arguments = "Info";
+            processInfo.UseShellExecute = false;
+            processInfo.RedirectStandardOutput = true;
+            processInfo.RedirectStandardError = true;
+            System.Diagnostics.Process process = System.Diagnostics.Process.Start(processInfo);
+            string stdOut = process.StandardOutput.ReadToEnd();
+            string stdErr = process.StandardError.ReadToEnd();
+            localDBlogger.Trace("SqlLocalDB:{0}", stdOut);
+            localDBlogger.Trace("SqlLocalDB:{0}", stdErr);
+            process.WaitForExit();
+            string[] list = null;
+            if (process.ExitCode == 0)
+            {
+                list = stdOut.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            }
+            return list;
         }
 
         static private SqlConnectionInfo getLocalDBInstanceConn(string connectionString)

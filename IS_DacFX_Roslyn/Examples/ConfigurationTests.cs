@@ -17,8 +17,7 @@ namespace Examples
         [TestMethod]
         public void TrySSISproject()
         {
-            var p = SSISHelper.LoadPackageFromProject("ExistingPackage", DevStudioHelper.SSISprojectPath + @"\bin\Development\SSIS.ispac");
-            Assert.IsNotNull(p);
+            Assert.IsTrue(SSISHelper.Check.PackageFromProject("ExistingPackage", DevStudioHelper.SSISprojectPath + @"\bin\Development\SSIS.ispac"),"Expected package not found in SSIS project");
         }
         [TestMethod]
         public void TryAppSettingsBaseDir()
@@ -45,7 +44,7 @@ namespace Examples
             MyLogger.CommonLog.Trace("codebase {0}", codebaset);
             string codebasef = System.Reflection.Assembly.GetExecutingAssembly().GetName(false).CodeBase;
             MyLogger.CommonLog.Trace("codebase {0}", codebasef);
-            MyLogger.CommonLog.Trace("ProjectPath {0}", T4Helper.TemplateDir);
+            MyLogger.CommonLog.Trace("ProjectPath {0}", RoslynHelper.T4Helper.TemplateDir);
 
         }
     }

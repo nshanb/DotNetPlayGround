@@ -13,14 +13,14 @@ namespace Examples
         {
             get
             {
-                return Path.Combine(Directory.GetParent(T4Helper.TemplateDir).ToString(), "SSIS");
+                return Path.Combine(Directory.GetParent(RoslynHelper.T4Helper.TemplateDir).ToString(), "SSIS");
             }
         }
         public static string TestDBprojectPath
         {
             get
             {
-                return Path.Combine(Directory.GetParent(T4Helper.TemplateDir).ToString(), "TestDB");
+                return Path.Combine(Directory.GetParent(RoslynHelper.T4Helper.TemplateDir).ToString(), "TestDB");
             }
         }
     }
