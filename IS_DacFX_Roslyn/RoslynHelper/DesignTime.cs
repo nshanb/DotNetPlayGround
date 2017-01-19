@@ -17,6 +17,7 @@ namespace RoslynHelper
     {
         public static void ProjectDIr()
         {
+            //AppDomain.CurrentDomain;
             VisualStudioWorkspace workspaceVS;
             MSBuildWorkspace workspaceMS;
             Workspace workspace;

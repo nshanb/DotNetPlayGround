@@ -12,4 +12,3 @@ namespace RoslynHelper
 		public static string TemplateDir = @"<#= di #>";
     }
 }
-

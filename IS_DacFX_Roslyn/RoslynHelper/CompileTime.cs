@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RoslynHelper
 {
-    public class Class1
+    public class CompileTime
     {
     }
 }

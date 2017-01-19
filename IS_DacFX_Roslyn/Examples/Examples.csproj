@@ -58,6 +58,7 @@
     <Compile Include="ConfigurationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LocalDBTests.cs" />
+    <Compile Include="EvalTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">
