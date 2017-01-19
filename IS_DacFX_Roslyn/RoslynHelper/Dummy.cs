@@ -10,9 +10,9 @@ namespace RoslynHelper
     class Dummy
     {
         // suppress "The field 'xxx' is never used warning
-#pragma warning disable 0649
+#pragma warning disable 0169
         System.Collections.Immutable.ImmutableList<int> temp;
         System.Reflection.Metadata.Constant temp1;
-#pragma warning restore 0649
+#pragma warning restore 0169
     }
 }
