@@ -252,6 +252,7 @@ paket-files/
 
 # FAKE - F# Make
 .fake/
+# Visual Studio 2015 in DB project
 *.jfm
 
 # Custom nsb gitignore's
