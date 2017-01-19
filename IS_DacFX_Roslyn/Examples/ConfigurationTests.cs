@@ -17,13 +17,20 @@ namespace Examples
         [TestMethod]
         public void TrySSISproject()
         {
-            Assert.IsTrue(SSISHelper.Check.PackageFromProject("ExistingPackage", DevStudioHelper.SSISprojectPath + @"\bin\Development\SSIS.ispac"),"Expected package not found in SSIS project");
+            Assert.IsTrue(SSISHelper.Check.PackageFromProject("ExistingPackage", DevStudioHelper.SSISprojectPath + @"\bin\Development\SSIS.ispac"), "Expected package not found in SSIS project");
+        }
+        [TestMethod]
+        public void CheckIfTestDBexists()
+        {
+            Assert.IsTrue(System.IO.File.Exists( DevStudioHelper.TestDBprojectPath + @"\bin\debug\testDB.dacpac"), "Expected dacpac not found in DB project");
         }
         [TestMethod]
         public void TryAppSettingsBaseDir()
         {
             Assert.AreEqual(System.Configuration.ConfigurationManager.AppSettings["BaseDir"], @"D:\Base");
             Assert.IsNull(System.Configuration.ConfigurationManager.ConnectionStrings["localDBdoes not exist"]);
+            Assert.IsNotNull(System.Configuration.ConfigurationManager.ConnectionStrings["localDB"]);
+            Assert.IsNotNull(System.Configuration.ConfigurationManager.ConnectionStrings["dacFXTest"]);
         }
         [TestMethod]
         public void TryParseConnString()

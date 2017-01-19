@@ -54,6 +54,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DacFXpublishTests.cs" />
     <Compile Include="DevStudioHelper.cs" />
     <Compile Include="ConfigurationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +65,10 @@
     <ProjectReference Include="..\..\Common\Common.csproj">
       <Project>{867ec43d-1deb-442e-85eb-0afd4821abb2}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DacFxHelper\DacFxHelper.csproj">
+      <Project>{8bc47873-fabb-4e3b-849e-a903763b0d82}</Project>
+      <Name>DacFxHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\RoslynHelper\RoslynHelper.csproj">
       <Project>{edc465fa-41ca-4219-a665-55463dfcb402}</Project>
@@ -79,7 +84,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
