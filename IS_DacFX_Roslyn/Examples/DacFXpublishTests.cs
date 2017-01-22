@@ -31,5 +31,12 @@ namespace Examples
             string connString = System.Configuration.ConfigurationManager.ConnectionStrings["dacFXTest"].ConnectionString;
             DacFxHelper.SimplePublish.PublishfromDacpac(dacpacPath, connString);
         }
+        [TestMethod]
+        public void TryPublishWithTrace()
+        {
+            string dacpacPath = DevStudioHelper.TestDBprojectPath + @"\bin\debug\testDB.dacpac";
+            string connString = System.Configuration.ConfigurationManager.ConnectionStrings["dacFXTest"].ConnectionString;
+            DacFxHelper.SimplePublish.PublishfromDacpacWithTrace(dacpacPath, connString);
+        }
     }
 }
