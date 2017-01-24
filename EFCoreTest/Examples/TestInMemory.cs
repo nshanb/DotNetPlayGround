@@ -11,7 +11,7 @@ namespace Examples
     public class TestInMemory
     {
         [TestMethod]
-        public void WriteandReadSyncTables()
+        public void WriteSaveReadData()
         {
             DbContextOptionsBuilder<ControllDB> dbContextOptionsBuilder = new DbContextOptionsBuilder<ControllDB>();
             dbContextOptionsBuilder.UseInMemoryDatabase();
@@ -29,7 +29,7 @@ namespace Examples
             }
         }
         [TestMethod]
-        public void WriteandReadMainConfigsTable()
+        public void WriteandReadData()
         {
             DbContextOptionsBuilder<ControllDB> dbContextOptionsBuilder = new DbContextOptionsBuilder<ControllDB>();
             dbContextOptionsBuilder.UseInMemoryDatabase();

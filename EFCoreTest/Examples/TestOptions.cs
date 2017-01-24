@@ -69,5 +69,3 @@ namespace Examples
         }
     }
 }
-//Microsoft.EntityFrameworkCore.Internal.DbContextServices.get_DatabaseProviderServices()
-//MyLogger.CommonLog.Trace("connStr: {0}", context.MainConfigs.Count());
