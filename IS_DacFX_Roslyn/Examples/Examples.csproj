@@ -60,6 +60,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LocalDBTests.cs" />
     <Compile Include="EvalTests.cs" />
+    <Compile Include="ExamineMSTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">
