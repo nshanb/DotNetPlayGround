@@ -7,7 +7,7 @@ namespace Examples
     public class EvalTests
     {
         [TestMethod]
-        public void SimpleInt()
+        public void EvalSimpleInt()
         {
             Assert.AreEqual(2, RoslynHelper.RunTime.EvalInt("1+1"));
             Assert.AreEqual(2, RoslynHelper.RunTime.EvalInt("int i; int j; i=1; return i+1;"));

@@ -6,9 +6,10 @@ namespace Examples
     [TestClass]
     public class ExamineMSTest
     {
-        // order => constructor, [TestInitialize], [TestMethod], [TestCleanup]
-        //
-        //
+        // order => [AssemblyInitialize]
+        //       => constructor, [ClassInitialize], [TestInitialize], [TestMethod], [TestCleanup], 
+        //       => constructor, [TestInitialize], [TestMethod], [TestCleanup], [ClassCleanup]
+        //       => [AssemblyCleanup]
         static Common.IMyLogger logger = Common.MyLogger.CommonLog;
         public ExamineMSTest()
         {
@@ -34,6 +35,26 @@ namespace Examples
         public void Clean()
         {
             logger.Trace("From [TestCleanup]");
+        }
+        [ClassInitialize]
+        static public void ClassInit(TestContext context)
+        {
+            logger.Trace("From [ClassInitialize]");
+        }
+        [ClassCleanup]
+        static public void ClassClean()
+        {
+            logger.Trace("From [ClassCleanup]");
+        }
+        [AssemblyInitialize]
+        static public void AssInit(TestContext context)
+        {
+            logger.Trace("From [AssemblyInitialize]");
+        }
+        [AssemblyCleanup]
+        static public void AssClean()
+        {
+            logger.Trace("From [AssemblyCleanup]");
         }
     }
 }
