@@ -179,6 +179,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDB1.cs" />
     <Compile Include="TestDB.cs" />
+    <Compile Include="TestMigrationsDB.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

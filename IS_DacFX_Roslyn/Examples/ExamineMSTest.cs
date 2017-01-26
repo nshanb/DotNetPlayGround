@@ -10,6 +10,7 @@ namespace Examples
         //       => constructor, [ClassInitialize], [TestInitialize], [TestMethod], [TestCleanup], 
         //       => constructor, [TestInitialize], [TestMethod], [TestCleanup], [ClassCleanup]
         //       => [AssemblyCleanup]
+        // Assert.Inconclusive in ClassInitialize deems Inconclusive all TestMethod's
         static Common.IMyLogger logger = Common.MyLogger.CommonLog;
         public ExamineMSTest()
         {
@@ -40,6 +41,7 @@ namespace Examples
         static public void ClassInit(TestContext context)
         {
             logger.Trace("From [ClassInitialize]");
+            //Assert.Inconclusive("Something wrong");
         }
         [ClassCleanup]
         static public void ClassClean()

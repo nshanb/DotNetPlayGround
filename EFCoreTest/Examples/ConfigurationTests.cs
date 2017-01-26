@@ -2,6 +2,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Common;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace Examples
 {
@@ -17,17 +21,25 @@ namespace Examples
         [TestMethod]
         public void TryGetAllServices()
         {
-            //Microsoft.EntityFrameworkCore.Internal.DbContextServices.get_DatabaseProviderServices.TryGetAllServices
-            Assert.Inconclusive();
-            //AppContext.BaseDirectory
-            //Console.WriteLine(.Count);
-            //AppDomain.CurrentDomain.
-
-            //Microsoft.Extensions.DependencyInjection. . .EntityFrameworkServiceCollectionExtensions .AddDbContext()
-            //ServiceCollection serviceCollection = new ServiceCollection();
-            //var x = serviceCollection.BuildServiceProvider();
-            // creates or updates something like D:\Nshan\DotNetPlayGround\EFCoreTest\Examples\bin\Debug\logs\common-2017-01-11.log file
-            // ServiceDescriptor
+            //Microsoft.Extensions.DependencyInjection.ServiceCollection
+            using (CoreDAL.TestMigrationsDB db = new CoreDAL.TestMigrationsDB())
+            {
+                // Microsoft.EntityFrameworkCore.Infrastructure
+                var z = db.GetService<IDatabaseCreator>();
+                var y = db.Database.GetService<IDatabaseCreator>();
+                Assert.AreSame(z, y);
+                var y1 = db.Database.GetService<IDatabaseProvider>();
+                var x = db.Database.GetService<IMigrator>();
+                var xx = db.GetService<IMigrator>();
+                Assert.AreSame(x, xx);
+                var x1 = db.Database.GetService<IMigrationsAssembly>();
+                var x2 = db.Database.GetService<IHistoryRepository>();
+                var x3 = db.GetService<IStateManager>();
+                var x4 = db.GetService<IChangeDetector>();
+                var x5 = db.GetService<IRelationalConnection>();
+                // IExecutionStrategy
+                //var x3 = db.Database.GetInfrastructure<Object>();
+            }
             //MyLogger.CommonLog.Trace("serviceCollection.Count:{}", serviceCollection.Count);
         }
     }
