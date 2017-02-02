@@ -41,11 +41,24 @@ namespace Examples
             using (CoreDAL.TestMigrationsDB db = new CoreDAL.TestMigrationsDB())
             {
                 IRelationalDatabaseCreator sqldbCreator = db.GetService<IRelationalDatabaseCreator>();
-                if (!sqldbCreator.Exists())
+                if (sqldbCreator.Exists())
                 {
-                    sqldbCreator.Create();
+                    sqldbCreator.Delete();
                 }
+                sqldbCreator.Create();
                 sqldbCreator.CreateTables();
+            }
+        }
+        [TestMethod]
+        public void Schema()
+        {
+            using (CoreDAL.TestMigrationsDB db = new CoreDAL.TestMigrationsDB())
+            {
+                Console.WriteLine(db.Model.Relational().Sequences.Count); //?? no elements??
+                foreach (var x in db.Model.Relational().Sequences)
+                {
+                    Console.WriteLine(x);
+                }
             }
         }
     }
