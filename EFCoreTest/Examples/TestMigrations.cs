@@ -33,6 +33,7 @@ namespace Examples
                 //db.Database.GetMigrations();
                 //db.Database.GetPendingMigrations();
                 //db.Database.Migrate();
+                // IRelationalConnection connection = _db.GetService<IRelationalConnection>();
             }
         }
         [TestMethod]
@@ -59,6 +60,16 @@ namespace Examples
                 {
                     Console.WriteLine(x);
                 }
+            }
+        }
+        [TestMethod]
+        public void GetServerAndDatabase()
+        {
+            using (CoreDAL.TestMigrationsDB db = new CoreDAL.TestMigrationsDB())
+            {
+                IRelationalConnection connection = db.GetService<IRelationalConnection>();
+                Console.WriteLine(connection.DbConnection.DataSource);
+                Console.WriteLine(connection.DbConnection.Database);
             }
         }
     }
