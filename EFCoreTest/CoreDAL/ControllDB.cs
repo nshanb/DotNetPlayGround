@@ -33,7 +33,7 @@ namespace CoreDAL
                 {
                     e.Property(o => o.LastSchemaConfig).HasDefaultValueSql("'1879-03-19'");
                     e.Property(o => o.LastSyncTableChange).HasDefaultValueSql("sysdatetime()");
-                    e.Property(o => o.Working).HasDefaultValue("I");
+                    e.Property(o => o.Working).HasColumnType("char(1)").HasDefaultValue("I");
                 }
                 );
         }

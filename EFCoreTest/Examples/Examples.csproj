@@ -193,6 +193,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestInMemory.cs" />
     <Compile Include="TestMigrations.cs" />
+    <Compile Include="TestModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">

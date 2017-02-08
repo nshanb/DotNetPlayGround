@@ -35,12 +35,12 @@ namespace Examples
             dbContextOptionsBuilder.UseInMemoryDatabase();
             using (ControllDB context = new ControllDB(dbContextOptionsBuilder.Options))
             {
-                context.MainConfigs.Add(new MainConfig() { Working = 'k' });
+                context.MainConfigs.Add(new MainConfig() { Working = "k" });
                 int n = context.SaveChanges();
                 Assert.AreEqual(n, 1);
 
                 MainConfig entity = context.MainConfigs.FirstOrDefault();
-                Assert.AreEqual(entity.Working, 'k');
+                Assert.AreEqual(entity.Working, "k");
             }
         }
     }

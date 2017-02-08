@@ -14,6 +14,6 @@ namespace Model.sync
         public int Id { get; set; }
         public DateTime LastSchemaConfig { get; set; }
         public DateTime LastSyncTableChange { get; set; }
-        public char Working { get; set; }
+        public string Working { get; set; }
     }
 }
