@@ -43,5 +43,39 @@ namespace Examples
                 Assert.AreEqual(entity.Working, "k");
             }
         }
+        [TestMethod]
+        public void DiferentContexts()
+        {
+            DbContextOptionsBuilder<ControllDB> dbContextOptionsBuilder = new DbContextOptionsBuilder<ControllDB>();
+            dbContextOptionsBuilder.UseInMemoryDatabase("DiferentContexts");
+            using (ControllDB context = new ControllDB(dbContextOptionsBuilder.Options))
+            {
+                int n;
+                n = context.MainConfigs.Count();
+                Assert.AreEqual(0, n);
+                n = context.SyncTables.Count();
+                Assert.AreEqual(0, n);
+                context.SyncTables.Add(new SyncTable() { Name="kuku"});
+                n = context.SyncTables.Count();
+                Assert.AreEqual(0, n,"Not saved in db yet");
+                Assert.IsNotNull(context.Find<SyncTable>("kuku"));
+                context.SaveChanges();
+                n = context.SyncTables.Count();
+                Assert.AreEqual(1, n);
+                context.MainConfigs.Add(new MainConfig() { Working="O" });
+                using (ControllDB context1 = new ControllDB(dbContextOptionsBuilder.Options))
+                {
+                    context1.MainConfigs.Add(new MainConfig() { Working = "R" });
+                    context1.SaveChanges();
+                    n = context1.MainConfigs.Count();
+                    Assert.AreEqual(1, n);
+                    n = context.MainConfigs.Count();
+                    Assert.AreEqual(1, n);
+                }
+                context.SaveChanges();
+                n = context.MainConfigs.Count();
+                Assert.AreEqual(2, n);
+            }
+        }
     }
 }
