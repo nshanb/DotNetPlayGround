@@ -20,10 +20,22 @@ namespace CoreDAL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             CoreDALLogger.Trace("ControllDB OnConfiguring");
-            if ( ! optionsBuilder.IsConfigured )
+            if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseInMemoryDatabase();
             }
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.HasDefaultSchema("dbo");
+            modelBuilder.Entity<MainConfig>
+                (e =>
+                {
+                    e.Property(o => o.LastSchemaConfig).HasDefaultValueSql("'1879-03-19'");
+                    e.Property(o => o.LastSyncTableChange).HasDefaultValueSql("sysdatetime()");
+                    e.Property(o => o.Working).HasColumnType("char(1)").HasDefaultValue("I");
+                }
+                );
         }
         public DbSet<MainConfig> MainConfigs { get; set; }
         public DbSet<SyncTable> SyncTables { get; set; }
