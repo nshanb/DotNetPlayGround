@@ -8,6 +8,7 @@ namespace RoslynHelper
 {
     public class RunTime
     {
+        // expr is anonymous function
         public static int EvalInt(string expr)
         {
             int i = -1;
