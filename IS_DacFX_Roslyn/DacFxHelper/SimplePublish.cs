@@ -74,3 +74,5 @@ namespace DacFxHelper
         }
     }
 }
+
+// https://blogs.msdn.microsoft.com/ssdt/2013/12/23/dacfx-public-model-tutorial/
