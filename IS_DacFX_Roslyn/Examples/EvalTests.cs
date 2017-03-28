@@ -13,5 +13,10 @@ namespace Examples
             Assert.AreEqual(2, RoslynHelper.RunTime.EvalInt("int i; int j; i=1; return i+1;"));
             Assert.AreEqual(2, RoslynHelper.RunTime.EvalInt("int i; int j; i=1; i+1"));
         }
+        [TestMethod]
+        public void TestProjectDir()
+        {
+            RoslynHelper.DesignTime.ProjectDIr();
+        }
     }
 }
