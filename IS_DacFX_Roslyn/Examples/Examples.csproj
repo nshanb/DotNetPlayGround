@@ -61,6 +61,7 @@
     <Compile Include="LocalDBTests.cs" />
     <Compile Include="EvalTests.cs" />
     <Compile Include="ExamineMSTest.cs" />
+    <Compile Include="SSISTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.csproj">
