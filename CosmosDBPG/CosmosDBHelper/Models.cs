@@ -8,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CosmosDBHelper
+namespace CosmosDBHelper.Models
 {
     public class Models
     {
         static IMyLogger PLogger = LoggerFactory.GetLogger("CosmosDBHelper");
     }
+
     public class Book
     {
         public ObjectId Id { get; set; }
@@ -26,5 +27,12 @@ namespace CosmosDBHelper
         [BsonId(IdGenerator = typeof(CombGuidGenerator))]
         public Guid Id { get; set; }
         public string City { get; set; }
+    }
+
+    public class Article
+    {
+        public string Id { get; set; }
+        public string Author { get; set; }
+        public string Title { get; set; }
     }
 }

@@ -258,3 +258,5 @@ paket-files/
 # Custom nsb gitignore's
 #/IS_DacFX_Roslyn/Examples/T4Helper.cs
 /IS_DacFX_Roslyn/RoslynHelper/T4Helper.cs
+/CosmosDBPG/CosmosDBTableApiTestAndHelper/pswd.config
+/CosmosDBPG/Playing/pswd.config

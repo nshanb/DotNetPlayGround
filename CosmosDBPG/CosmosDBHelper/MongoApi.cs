@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using CosmosDBHelper.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Configuration;
 using System;
@@ -11,17 +12,17 @@ using System.Threading.Tasks;
 
 namespace CosmosDBHelper
 {
-    public class Mongo
+    public class MongoApi
     {
         private const string _Host = "625bfdb2-0ee0-4-231-b9ee.documents.azure.com";
         private const string _UserName = "625bfdb2-0ee0-4-231-b9ee";
-        private const string _pswd = "BbmGeMJDIPyZolfCE5qdlabtUqYimEbKP7Y64cLULJaOTbE5XOJUOhvb7Mno7dB8LYF8gmhhIL7ex2TLUyVVXw==";
-        private const string _pswdRO = "BbmGeMJDIPyZolfCE5qdlabtUqYimEbKP7Y64cLULJaOTbE5XOJUOhvb7Mno7dB8LYF8gmhhIL7ex2TLUyVVXw==";
+        private static readonly string _pswd = System.Configuration.ConfigurationManager.AppSettings["pswd"];
+        private static readonly string _pswdRO = System.Configuration.ConfigurationManager.AppSettings["pswdRO"];
         private const string _dbName = "Library";
 
         private MongoClientSettings _ClientSettingsRW;
         private MongoClientSettings _ClientSettingsRO;
-        public Mongo()
+        public MongoApi()
         {
             MongoIdentity identity;
             MongoIdentityEvidence evidence;
@@ -96,6 +97,20 @@ namespace CosmosDBHelper
             IMongoDatabase database = client.GetDatabase(_dbName);
             IMongoCollection<Book> books = database.GetCollection<Book>("Book");
             books.InsertOne(aBook);
+        }
+        public List<Address> GetAddresses()
+        {
+            MongoClient client = new MongoClient(_ClientSettingsRO);
+            IMongoDatabase database = client.GetDatabase(_dbName);
+            IMongoCollection<Address> addresses = database.GetCollection<Address>("Address");
+            return addresses.Find(new BsonDocument()).ToList();
+        }
+        public void CreateAddress(Address anAddress)
+        {
+            MongoClient client = new MongoClient(_ClientSettingsRW);
+            IMongoDatabase database = client.GetDatabase(_dbName);
+            IMongoCollection<Address> books = database.GetCollection<Address>("Address");
+            books.InsertOne(anAddress);
         }
     }
 }
