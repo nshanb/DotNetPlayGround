@@ -10,11 +10,15 @@ let knapsackLight value1 weight1 value2 weight2 maxW =
 
 let arithmeticExpression a b c =
     let rec res l (a,b,c) = 
+        printfn "k"
         match l with
         | [] -> false
-        | head::tail when a head b = c -> true
-        | head::tail -> res tail (a,b,c)
-    res [(+),(-),(*),(/)] (a,b,c)
+        | head::_ when head a b = c -> true
+        | _::tail -> res tail (a,b,c)
+    try
+        res [(+);(-);(*);(/)] (a,b,c)
+    with
+        | _ -> false
 
 // let oper xop (x1, x2, x3) = x1 xop x2 = x3
 // let r = for op in [(+),(-),(*),(/)] do oper op (a, b, c) 
