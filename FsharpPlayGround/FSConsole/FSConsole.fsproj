@@ -58,6 +58,7 @@
     <None Include="App.config" />
     <Content Include="packages.config" />
     <Compile Include="FirstExamples.fs" />
+    <Compile Include="MatchExamples.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
