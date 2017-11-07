@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CosmosDBHelper;
 using System.Diagnostics;
 using MongoDB.Bson;
+using CosmosDBHelper.Models;
 
 namespace Playing
 {
@@ -17,12 +18,12 @@ namespace Playing
         [TestMethod]
         public void InfastructureTest()
         {
-            Console.WriteLine("ClusterConfigurator: {0}", Mongo.ForTest());
+            Console.WriteLine("ClusterConfigurator: {0}", MongoApi.ForTest());
         }
         [TestMethod]
-        public void BasicMongoTest()
+        public void MongoTest_Book()
         {
-            Mongo m = new Mongo();
+            MongoApi m = new MongoApi();
             //m.ConfigureLogging();
 
             var l = m.GetBooks();
@@ -39,9 +40,28 @@ namespace Playing
             }
         }
         [TestMethod]
+        public void MongoTest_Address()
+        {
+            MongoApi m = new MongoApi();
+            //m.ConfigureLogging();
+
+            var l = m.GetAddresses();
+            foreach (var b in l)
+            {
+                Console.WriteLine(b.ToJson());
+            }
+            m.CreateAddress(new Address() { City = "Nshan" });
+
+            l = m.GetAddresses();
+            foreach (var b in l)
+            {
+                Console.WriteLine(b.ToJson());
+            }
+        }
+        [TestMethod]
         public void UntypedMongoTest()
         {
-            Mongo m = new Mongo();
+            MongoApi m = new MongoApi();
             //m.ConfigureLogging();
 
             var t = m.GetObjects();

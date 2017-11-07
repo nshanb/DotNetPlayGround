@@ -1,0 +1,8 @@
+--=======================================================
+pswd.config:
+<?xml version="1.0" encoding="utf-8" ?>
+<appSettings>
+  <add key="pswd" value="brbrbr"></add>
+  <add key="pswdRO" value="brbrbr"></add>
+</appSettings>
+--=======================================================
