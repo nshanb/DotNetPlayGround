@@ -9,6 +9,10 @@ let knapsackLight value1 weight1 value2 weight2 maxW =
  else fst r.[0]
 
 let arithmeticExpression a b c =
+    let del x y = 
+        if x%y<>0 
+        then c+1 
+        else x/y
     let rec res l (a,b,c) = 
         printfn "k"
         match l with
@@ -16,9 +20,12 @@ let arithmeticExpression a b c =
         | head::_ when head a b = c -> true
         | _::tail -> res tail (a,b,c)
     try
-        res [(+);(-);(*);(/)] (a,b,c)
+        res [(+);(-);(*);del] (a,b,c)
     with
         | _ -> false
+
+let arithmeticExpression1 a b c =
+    [a+b=c; a-b=c; a*b=c; a = b*c] |> List.fold (||)  false
 
 // let oper xop (x1, x2, x3) = x1 xop x2 = x3
 // let r = for op in [(+),(-),(*),(/)] do oper op (a, b, c) 
@@ -28,6 +35,7 @@ let test1 x = 1
 
 [<EntryPoint>]
 let main argv = 
+    let x = arithmeticExpression1 1 2 3
     printfn "%A" argv
     0 // return an integer exit code
 
