@@ -27,11 +27,16 @@ let arithmeticExpression a b c =
 let arithmeticExpression1 a b c =
     [a+b=c; a-b=c; a*b=c; a = b*c] |> List.fold (||)  false
 
+let metroCard1 lastNumberOfDays =
+    let d = List.rev [31;28;31;30;31;30;31;31;30;31;30;31;]
+    d
+let killKthBit n k = 
+    (~~~ (1u <<< k)) &&& n
+
 // let oper xop (x1, x2, x3) = x1 xop x2 = x3
 // let r = for op in [(+),(-),(*),(/)] do oper op (a, b, c) 
 
 
-let test1 x = 1
 
 [<EntryPoint>]
 let main argv = 

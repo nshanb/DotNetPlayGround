@@ -15,4 +15,10 @@ let rec printList x =
     | [] -> printfn ""
     | head::tail -> printfn "%d " head; printList tail
 
+let tennisSet score1 score2 =
+    match (score1,score2) with
+    | (6,x) when x<5 -> true
+    | (x,6) when x<5 -> true
+    | (x,y) when x>=5 && y>=5 && (x=7 || y=7) -> true
+    | _ -> false
 
