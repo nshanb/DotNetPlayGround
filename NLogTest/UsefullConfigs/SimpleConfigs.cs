@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Net.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog;
 
@@ -37,6 +39,24 @@ namespace UsefullConfigs
             SimpleLogger.Warn("This is a Warning");
             SimpleLogger1.Trace("This is a Trace");
             SimpleLogger1.Warn("This is a Warning");
+        }
+
+        [TestMethod]
+        public void ConnectToWindowsEvents()
+        {
+            NLog.Config.XmlLoggingConfiguration xml = new NLog.Config.XmlLoggingConfiguration(@"..\..\forevents.config");
+            LogManager.Configuration = xml;
+
+            //System.Diagnostics.Tracing.
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri("https://play-ground-docdb.documents.azure.com/");
+            var result = httpClient.GetAsync("");
+            var response = result.Result;
+
+            Console.WriteLine(response);
+            Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+
         }
     }
 }
