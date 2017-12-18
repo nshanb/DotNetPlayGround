@@ -14,7 +14,7 @@ namespace CosmosDBHelper
 {
     public class MongoApi
     {
-        private const string _Host = "625bfdb2-0ee0-4-231-b9ee.documents.azure.com";
+        private static string _Host = System.Configuration.ConfigurationManager.AppSettings["host"];
         private const string _UserName = "625bfdb2-0ee0-4-231-b9ee";
         private static readonly string _pswd = System.Configuration.ConfigurationManager.AppSettings["pswd"];
         private static readonly string _pswdRO = System.Configuration.ConfigurationManager.AppSettings["pswdRO"];

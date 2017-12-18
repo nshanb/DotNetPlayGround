@@ -17,7 +17,7 @@ namespace CosmosDBHelper
     public class GraphApi
     {
         private static readonly string authKey = System.Configuration.ConfigurationManager.AppSettings["pswd"];
-        private static readonly string endpoint = "https://625bfdb2-0ee0-4-231-b9ee.documents.azure.com";
+        private static readonly string endpoint = "https://" + System.Configuration.ConfigurationManager.AppSettings["host"];
         DocumentClient client;
         public GraphApi()
         {

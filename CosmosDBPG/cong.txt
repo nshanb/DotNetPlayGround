@@ -4,5 +4,6 @@ pswd.config:
 <appSettings>
   <add key="pswd" value="brbrbr"></add>
   <add key="pswdRO" value="brbrbr"></add>
+  <add key="host" value="brbrbr"></add>
 </appSettings>
 --=======================================================

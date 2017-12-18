@@ -12,6 +12,7 @@ namespace CosmosDBTableApiTestAndHelper
     {
         private const string _AccountName = "625bfdb2-0ee0-4-231-b9ee";
         private static readonly string _AUTHKEY = System.Configuration.ConfigurationManager.AppSettings["pswd"];
+        private static readonly string _URI = "https://" + System.Configuration.ConfigurationManager.AppSettings["host"];
 
         private CloudTableClient tableClient;
         public TableApi()
@@ -19,7 +20,7 @@ namespace CosmosDBTableApiTestAndHelper
             string _PremiumStorageConnectionString;
             CloudStorageAccount storageAccount;
 
-            _PremiumStorageConnectionString = $"DefaultEndpointsProtocol=https;AccountName={_AccountName};AccountKey={_AUTHKEY};TableEndpoint=https://625bfdb2-0ee0-4-231-b9ee.documents.azure.com";
+            _PremiumStorageConnectionString = $"DefaultEndpointsProtocol=https;AccountName={_AccountName};AccountKey={_AUTHKEY};TableEndpoint={_URI}";
 
             storageAccount = CloudStorageAccount.Parse(_PremiumStorageConnectionString);
             tableClient = storageAccount.CreateCloudTableClient();

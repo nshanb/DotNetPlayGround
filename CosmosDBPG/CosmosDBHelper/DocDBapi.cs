@@ -15,11 +15,12 @@ namespace CosmosDBHelper
         private static readonly string _DatabaseId = "Library";
         private static readonly string _pswd = System.Configuration.ConfigurationManager.AppSettings["pswd"];
         private static readonly string _CollectionId = "Article";
+        private static readonly string _URI = "https://" + System.Configuration.ConfigurationManager.AppSettings["host"];
 
         private DocumentClient _Client;
         public DocDBapi()
         {
-            _Client = new DocumentClient(new Uri("https://625bfdb2-0ee0-4-231-b9ee.documents.azure.com"), _pswd);
+            _Client = new DocumentClient(new Uri(_URI), _pswd);
         }
         public string CheckDB()
         {
