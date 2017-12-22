@@ -59,6 +59,7 @@
     <Content Include="packages.config" />
     <Compile Include="FirstExamples.fs" />
     <Compile Include="MatchExamples.fs" />
+    <Compile Include="TimeChecker.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>

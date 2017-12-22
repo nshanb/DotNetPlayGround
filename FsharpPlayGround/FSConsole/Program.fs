@@ -1,6 +1,7 @@
 ﻿module myMain
 
 open FirstExamples
+let kk = FirstExamples.emptyArray
 
 let knapsackLight value1 weight1 value2 weight2 maxW =
  let l = List.filter ( fun (x , y) -> y <= maxW ) [ (value1+value2, weight1+weight2); (value1,weight1); (value2,weight2); ]
@@ -36,7 +37,8 @@ let killKthBit n k =
 // let oper xop (x1, x2, x3) = x1 xop x2 = x3
 // let r = for op in [(+),(-),(*),(/)] do oper op (a, b, c) 
 
-
+//open TimeChecker
+let t = TimeChecker.TLog
 
 [<EntryPoint>]
 let main argv = 
