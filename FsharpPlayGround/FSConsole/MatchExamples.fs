@@ -22,3 +22,9 @@ let tennisSet score1 score2 =
     | (x,y) when x>=5 && y>=5 && (x=7 || y=7) -> true
     | _ -> false
 
+// https://github.com/dungpa/fsharp-cheatsheet/blob/master/lib/StringParsing.fs
+// ???
+let (|Let|) a b = (a, b)
+
+ 
+
